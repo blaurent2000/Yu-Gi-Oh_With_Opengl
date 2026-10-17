@@ -250,3 +250,47 @@ void TextRenderer::drawText(
     if (!blendWasEnabled)
         glDisable(GL_BLEND);
 }
+
+void TextRenderer::drawWrappedText(
+    FontType type,
+    const std::string& text,
+    float x, float y,
+    float maxWidth,
+    float scale,
+    const glm::vec3& color,
+    const glm::mat4& projection
+) {
+    auto font = fonts.find(type);
+    if (font == fonts.end() || !shaderProgram) return;
+
+    float startX = x;
+    float lineHeight = 48.0f * scale * 1.2f;
+    std::string word;
+    std::string line;
+
+    auto getWidth = [&](const std::string& str) {
+        float width = 0.0f;
+        for (unsigned char c : str) {
+            auto it = font->second.find(static_cast<char>(c));
+            if (it != font->second.end())
+                width += (it->second.advance >> 6) * scale;
+        }
+        return width;
+    };
+
+    std::istringstream stream(text);
+    while (stream >> word) {
+        std::string test = line.empty() ? word : line + " " + word;
+
+        if (getWidth(test) > maxWidth && !line.empty()) {
+            drawText(type, line, startX, y, scale, color, projection);
+            line = word;
+            y += lineHeight;
+        } else {
+            line = test;
+        }
+    }
+
+    if (!line.empty())
+        drawText(type, line, startX, y, scale, color, projection);
+}

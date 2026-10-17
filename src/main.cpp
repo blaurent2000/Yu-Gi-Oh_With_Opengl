@@ -194,13 +194,14 @@ int main() {
     textureLibrary.load("Blue-Eyes White Dragon");
     textureLibrary.load("Dark Magician");
 
-    CardRenderer renderer(shaderProgram, VAO, baseTexture, backTexture, starTexture, textureLibrary);
-    FieldRenderer fieldRenderer(fieldShaderProgram, VAO, field, renderer);
-    
     TextRenderer textRenderer("shaders/text.vert", "shaders/text.frag");
-
     textRenderer.loadFont(FontType::Regular, "fonts/Matrix Regular.otf", 48);
     textRenderer.loadFont(FontType::SmallCaps, "fonts/Matrix Regular Small Caps.ttf", 48);
+
+    CardRenderer renderer(shaderProgram, VAO, baseTexture, backTexture, starTexture, textureLibrary, &textRenderer);
+    FieldRenderer fieldRenderer(fieldShaderProgram, VAO, field, renderer);
+    
+
 
     int hoveredCard = -1;
     while (!glfwWindowShouldClose(window)) {

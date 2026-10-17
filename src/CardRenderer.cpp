@@ -9,14 +9,16 @@ CardRenderer::CardRenderer(
     unsigned int baseTexture,
     unsigned int backTexture,
     unsigned int starTexture,
-    TextureLibrary& textureLibrary
+    TextureLibrary& textureLibrary,
+    TextRenderer* textRenderer
 )
     : shaderProgram(shaderProgram),
       VAO(VAO),
       baseTexture(baseTexture),
       backTexture(backTexture),
       starTexture(starTexture),
-      textureLibrary(textureLibrary)
+      textureLibrary(textureLibrary),
+      textRenderer(textRenderer)
 {
     modelLocation = glGetUniformLocation(shaderProgram, "model");
     projectionLocation = glGetUniformLocation(shaderProgram, "projection");
@@ -121,4 +123,46 @@ void CardRenderer::draw(
             size * glm::vec2(130.0f / 2000.0f, 130.0f / 3000.0f)
         );
     }
+
+            // Affiche le nom au-dessus des étoiles
+        textRenderer->drawText(
+            FontType::SmallCaps,
+            card.getName(),
+            position.x + size.x * 0.09f,
+            position.y + size.y * 0.065f,
+            size.x / 450.0f,
+            glm::vec3(0.0f, 0.0f, 0.0f),
+            projection
+        );
+
+        textRenderer->drawWrappedText(
+            FontType::SmallCaps,
+            card.getDescription(),
+            position.x + size.x * 0.09f,
+            position.y + size.y * 0.77f,
+            size.x * 0.84f,
+            size.x / 800.0f,
+            glm::vec3(0.0f, 0.0f, 0.0f),
+            projection
+        );
+
+        textRenderer->drawText(
+            FontType::SmallCaps,
+            std::to_string(card.getAttack()),
+            position.x + size.x * 0.62f,
+            position.y + size.y * 0.915f,
+            size.x / 800.0f,
+            glm::vec3(0.0f, 0.0f, 0.0f),
+            projection
+        );
+
+        textRenderer->drawText(
+            FontType::SmallCaps,
+            std::to_string(card.getDefense()),
+            position.x + size.x * 0.82f,
+            position.y + size.y * 0.915f,
+            size.x / 800.0f,
+            glm::vec3(0.0f, 0.0f, 0.0f),
+            projection
+        );
 }

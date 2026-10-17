@@ -28,6 +28,16 @@ public:
     );
     ~TextRenderer();
 
+    void drawWrappedText(
+        FontType type,
+        const std::string& text,
+        float x, float y,
+        float maxWidth,
+        float scale,
+        const glm::vec3& color,
+        const glm::mat4& projection
+    );
+
     bool loadFont(FontType type, const std::string& path, unsigned int fontSize);
 
     void drawText(

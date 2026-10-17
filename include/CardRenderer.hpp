@@ -2,6 +2,7 @@
 
 #include "Card.hpp"
 #include "TextureLibrary.hpp"
+#include "TextRenderer.hpp"
 
 #include <glad/gl.h>
 #include <glm/glm.hpp>
@@ -16,7 +17,8 @@ public:
         unsigned int baseTexture,
         unsigned int backTexture,
         unsigned int starTexture,
-        TextureLibrary& textureLibrary
+        TextureLibrary& textureLibrary,
+        TextRenderer* textRenderer
     );
 
     void draw(const Card& card, const glm::mat4& projection,
@@ -39,6 +41,7 @@ private:
     unsigned int starTexture;
 
     TextureLibrary& textureLibrary;
+    TextRenderer* textRenderer;
 
     int modelLocation;
     int projectionLocation;
