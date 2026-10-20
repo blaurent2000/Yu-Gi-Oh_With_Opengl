@@ -1,10 +1,10 @@
 
 #include "Field.hpp"
 
+
 Field::Field() {
     float x[] = {0, 130, 260, 390, 520, 650, 780};
-    float y[] = {0, 190, 380, 570};
-
+    float y[] = {-20, 170, 400, 590};
     // Adversaire : Deck, Magies/Pièges, Extra Deck
     zones.emplace_back(DECK_ZONE, glm::vec2(x[0], y[0]));
     for (int i = 0; i < 5; i++)
@@ -29,6 +29,7 @@ Field::Field() {
         zones.emplace_back(SPELL_ZONE, glm::vec2(x[i + 1], y[3]));
     zones.emplace_back(DECK_ZONE, glm::vec2(x[6], y[3]));
 }
+
 
 FieldZone* Field::getZone(int index) {
     if (index < 0 || index >= static_cast<int>(zones.size()))

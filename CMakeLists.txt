@@ -44,6 +44,7 @@ add_executable(OpenGLTutorial
     src/Field.cpp
     src/Hand.cpp
     src/TextRenderer.cpp
+    src/PhaseRenderer.cpp
 )
 
 target_include_directories(OpenGLTutorial PRIVATE

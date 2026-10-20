@@ -1,6 +1,7 @@
 
 #include "Card.hpp"
 #include "CardRenderer.hpp"
+#include "PhaseRenderer.hpp"
 #include "TextureLibrary.hpp"
 #include "FieldRenderer.hpp"
 #include "Field.hpp"
@@ -190,6 +191,28 @@ int main() {
     unsigned int baseTexture = loadTexture("textures/full_card.jpg");
     unsigned int backTexture = loadTexture("textures/card_back.jpg");
     unsigned int starTexture = loadTexture("textures/star.png");
+    std::vector<unsigned int> phasesTextures;
+    phasesTextures.push_back(loadTexture("textures/phases/d.png"));
+    phasesTextures.push_back(loadTexture("textures/phases/sb.png"));
+    phasesTextures.push_back(loadTexture("textures/phases/m1.png"));
+    phasesTextures.push_back(loadTexture("textures/phases/btl.png"));
+    phasesTextures.push_back(loadTexture("textures/phases/m2.png"));
+    phasesTextures.push_back(loadTexture("textures/phases/end.png"));
+    phasesTextures.push_back(loadTexture("textures/phases/d_current.png"));
+    phasesTextures.push_back(loadTexture("textures/phases/sb_current.png"));
+    phasesTextures.push_back(loadTexture("textures/phases/m1_current.png"));
+    phasesTextures.push_back(loadTexture("textures/phases/btl_current.png"));
+    phasesTextures.push_back(loadTexture("textures/phases/m2_current.png"));
+    phasesTextures.push_back(loadTexture("textures/phases/end_current.png"));
+
+    // unsigned int sbTexture = loadTexture("textures/phases/sb.png");
+    // unsigned int sbTexture = loadTexture("textures/phases/sb_current.png");
+    // unsigned int sbTexture = loadTexture("textures/phases/m1.png");
+    // unsigned int sbTexture = loadTexture("textures/phases/m1_current.png");
+    // unsigned int sbTexture = loadTexture("textures/phases/btl.png");
+    // unsigned int sbTexture = loadTexture("textures/phases/btl_current.png");
+    // unsigned int sbTexture = loadTexture("textures/phases/m2.png");
+    // unsigned int sbTexture = loadTexture("textures/phases/m2_current.png");
     TextureLibrary textureLibrary;
     textureLibrary.load("Blue-Eyes White Dragon");
     textureLibrary.load("Dark Magician");
@@ -200,9 +223,11 @@ int main() {
 
     CardRenderer renderer(shaderProgram, VAO, baseTexture, backTexture, starTexture, textureLibrary, &textRenderer);
     FieldRenderer fieldRenderer(fieldShaderProgram, VAO, field, renderer);
+    GameManager gameManager;
+    PhaseRenderer phaseRenderer(shaderProgram, VAO, phasesTextures, textureLibrary, gameManager);
     
-
-
+    glm::vec2 phasePosition(515, 355);
+    glm::vec2 phaseSize(70.0f, 70.0f);
     int hoveredCard = -1;
     while (!glfwWindowShouldClose(window)) {
         glClearColor(0.04f, 0.04f, 0.08f, 1.0f);
@@ -213,6 +238,8 @@ int main() {
         // 1. Dessiner le terrain centré
         fieldRenderer.draw(projection, width, height);
 
+        phaseRenderer.drawPhases(projection, phasePosition, phaseSize);
+        
         // 2. Calculer la position des cartes dans la main
         glm::vec2 handCardSize(100.0f, 150.0f);
         float overlap = 35.0f;

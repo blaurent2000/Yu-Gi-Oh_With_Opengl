@@ -124,45 +124,45 @@ void CardRenderer::draw(
         );
     }
 
-            // Affiche le nom au-dessus des étoiles
-        textRenderer->drawText(
-            FontType::SmallCaps,
-            card.getName(),
-            position.x + size.x * 0.09f,
-            position.y + size.y * 0.065f,
-            size.x / 450.0f,
-            glm::vec3(0.0f, 0.0f, 0.0f),
-            projection
-        );
+    // Affiche le nom au-dessus des étoiles
+    textRenderer->drawText(
+        FontType::SmallCaps,
+        card.getName(),
+        position.x + size.x * 0.09f,
+        position.y + size.y * 0.065f,
+        size.x / 450.0f,
+        glm::vec3(0.0f, 0.0f, 0.0f),
+        projection
+    );
 
-        textRenderer->drawWrappedText(
-            FontType::SmallCaps,
-            card.getDescription(),
-            position.x + size.x * 0.09f,
-            position.y + size.y * 0.77f,
-            size.x * 0.84f,
-            size.x / 800.0f,
-            glm::vec3(0.0f, 0.0f, 0.0f),
-            projection
-        );
+    textRenderer->drawWrappedText(
+        FontType::SmallCaps,
+        card.getDescription(),
+        position.x + size.x * 0.09f,
+        position.y + size.y * 0.77f,
+        size.x * 0.84f,
+        size.x / 750.0f,
+        glm::vec3(0.0f, 0.0f, 0.0f),
+        projection
+    );
 
-        textRenderer->drawText(
-            FontType::SmallCaps,
-            std::to_string(card.getAttack()),
-            position.x + size.x * 0.62f,
-            position.y + size.y * 0.915f,
-            size.x / 800.0f,
-            glm::vec3(0.0f, 0.0f, 0.0f),
-            projection
-        );
+    textRenderer->drawText(
+        FontType::SmallCaps,
+        std::to_string(card.getAttack()),
+        position.x + size.x * 0.62f,
+        position.y + size.y * 0.915f,
+        size.x / 800.0f,
+        glm::vec3(0.0f, 0.0f, 0.0f),
+        projection
+    );
 
-        textRenderer->drawText(
-            FontType::SmallCaps,
-            std::to_string(card.getDefense()),
-            position.x + size.x * 0.82f,
-            position.y + size.y * 0.915f,
-            size.x / 800.0f,
-            glm::vec3(0.0f, 0.0f, 0.0f),
-            projection
-        );
+    textRenderer->drawText(
+        FontType::SmallCaps,
+        std::to_string(card.getDefense()),
+        position.x + size.x * 0.82f,
+        position.y + size.y * 0.915f,
+        size.x / 800.0f,
+        glm::vec3(0.0f, 0.0f, 0.0f),
+        projection
+    );
 }
