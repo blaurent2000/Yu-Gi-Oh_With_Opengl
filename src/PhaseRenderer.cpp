@@ -78,30 +78,23 @@ void PhaseRenderer::drawPhase(
     glDrawArrays(GL_TRIANGLES, 0, 6);
 }
 
+
 void PhaseRenderer::drawPhases(
     const glm::mat4& projection,
     const glm::vec2& position,
     const glm::vec2& size
 ) {
-
     glm::vec2 gap(100.0f, 0.0f);
-    int phaseIndex = static_cast<int>(gameManager.getCurrentPhase());
-    for (int i = 0; i < 6; i++) {
-        if (i == phaseIndex) {
-            drawPhase(
-                phasesTextures[i + 6],
-                projection,
-                position + gap * static_cast<float>(i),
-                size
-            );
-        } else {
-            drawPhase(
-                phasesTextures[i],
-                projection,
-                position + gap * static_cast<float>(i),
-                size
-            );
-        }
-    }
 
+    for (int i = 0; i < 6; i++) {
+
+        drawPhase(
+            (i == static_cast<int>(gameManager.getCurrentPhase()))
+            ? phasesTextures[i + 6]
+            : phasesTextures[i],
+            projection,
+            position + gap * static_cast<float>(i),
+            size
+        );
+    }
 }
