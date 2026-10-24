@@ -1,15 +1,17 @@
+
 #pragma once
+
 #include "Card.hpp"
 #include <vector>
 
 class Hand {
 public:
-    void addCard(Card* card);
+    void addCard(const Card& card);
     void removeCard(int index);
-    Card* getCard(int index) const;
-    const std::vector<Card*>& getCards() const { return cards; }
-    int size() const { return cards.size(); }
+    Card* getCard(int index);
+    const std::vector<Card>& getCards() const;
+    int size() const;
 
 private:
-    std::vector<Card*> cards;
+    std::vector<Card> cards;
 };

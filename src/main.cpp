@@ -8,6 +8,7 @@
 #include "Hand.hpp"
 #include "TextRenderer.hpp"
 #include "GameManager.hpp"
+#include "Deck.hpp"
 
 #include <glad/gl.h>
 #include <GLFW/glfw3.h>
@@ -214,8 +215,8 @@ int main() {
         );
 
         Hand hand;
-        hand.addCard(&blueEyes);
-        hand.addCard(&darkMagician);
+        hand.addCard(blueEyes);
+        hand.addCard(darkMagician);
 
         baseTexture = loadTexture("textures/full_card.jpg");
         backTexture = loadTexture("textures/card_back.jpg");
@@ -263,6 +264,9 @@ int main() {
         glm::vec2 phaseSize(70.0f, 70.0f);
 
         static bool wasMousePressed = false;
+
+        Deck deck;
+        deck.initDeck("./deck/deck1");
 
         while (!glfwWindowShouldClose(window)) {
             glfwPollEvents();

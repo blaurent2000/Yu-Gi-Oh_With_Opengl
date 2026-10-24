@@ -45,6 +45,7 @@ add_executable(OpenGLTutorial
     src/Hand.cpp
     src/TextRenderer.cpp
     src/PhaseRenderer.cpp
+    src/Deck.cpp
 )
 
 target_include_directories(OpenGLTutorial PRIVATE
