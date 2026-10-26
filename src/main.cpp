@@ -214,9 +214,8 @@ int main() {
             "Le magicien ultime en termes d'attaque et de défense."
         );
 
-        Hand hand;
-        hand.addCard(blueEyes);
-        hand.addCard(darkMagician);
+        Hand hand1;
+        Hand hand2;
 
         baseTexture = loadTexture("textures/full_card.jpg");
         backTexture = loadTexture("textures/card_back.jpg");
@@ -265,9 +264,19 @@ int main() {
 
         static bool wasMousePressed = false;
 
-        Deck deck;
-        deck.initDeck("./deck/deck1");
+        Deck deckP1;
+        deckP1.initDeck("./deck/Blue-Eyes Deck.txt");
+        Deck deckP2;
+        deckP2.initDeck("./deck/Dark Magician Deck.txt");
 
+        int dr = 5;
+        while (dr--) {
+            deckP1.drawCard(hand1);
+        }
+        dr = 5;
+        while (dr--) {
+            deckP2.drawCard(hand2);
+        }
         while (!glfwWindowShouldClose(window)) {
             glfwPollEvents();
 
@@ -311,12 +320,12 @@ int main() {
             float overlap = 35.0f;
 
             float startX = width - 30.0f - handCardSize.x
-                         - (hand.size() - 1) * overlap;
+                         - (hand1.size() - 1) * overlap;
             float handY = height - handCardSize.y - 20.0f;
 
             int hoveredCard = -1;
 
-            for (int i = static_cast<int>(hand.size()) - 1; i >= 0; i--) {
+            for (int i = static_cast<int>(hand1.size()) - 1; i >= 0; i--) {
                 float x = startX + i * overlap;
 
                 if (mouseX >= x && mouseX <= x + handCardSize.x &&
@@ -326,14 +335,14 @@ int main() {
                 }
             }
 
-            for (int i = 0; i < hand.size(); i++) {
+            for (int i = 0; i < hand1.size(); i++) {
                 glm::vec2 position(startX + i * overlap, handY);
-                renderer.draw(*hand.getCard(i), projection, position, handCardSize);
+                renderer.draw(*hand1.getCard(i), projection, position, handCardSize);
             }
 
             if (hoveredCard != -1) {
                 renderer.draw(
-                    *hand.getCard(hoveredCard),
+                    *hand1.getCard(hoveredCard),
                     projection,
                     glm::vec2(30.0f, height / 2.0f - 225.0f),
                     glm::vec2(300.0f, 450.0f)

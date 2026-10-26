@@ -6,7 +6,8 @@
 enum CardType {
     MONSTER,
     SPELL,
-    TRAP
+    TRAP,
+    FIELD
 };
 
 class Card {

@@ -9,7 +9,7 @@
 
 unsigned int TextureLibrary::load(const std::string& cardName)
 {
-    std::string path = "textures/cards/" + cardName + ".jpg";
+    std::string path = "textures/cards/" + cardName + ".png";
 
     int width;
     int height;

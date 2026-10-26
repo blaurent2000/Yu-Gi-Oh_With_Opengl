@@ -1,0 +1,25 @@
+
+Dark Magician | MONSTER | 2500 | 2100 | 7
+Dark Magician | MONSTER | 2500 | 2100 | 7
+Dark Magician | MONSTER | 2500 | 2100 | 7
+Dark Magician Girl | MONSTER | 2000 | 1700 | 6
+Skilled Dark Magician | MONSTER | 1900 | 1700 | 4
+Skilled Dark Magician | MONSTER | 1900 | 1700 | 4
+Breaker the Magical Warrior | MONSTER | 1600 | 1000 | 4
+Kycoo the Ghost Destroyer | MONSTER | 1800 | 700 | 4
+Alexandrite Dragon | MONSTER | 2000 | 100 | 4
+Luster Dragon | MONSTER | 1900 | 1600 | 4
+
+Dark Magical Circle | SPELL | 0 | 0 | 0
+Dark Magic Attack | SPELL | 0 | 0 | 0
+Polymerization | SPELL | 0 | 0 | 0
+Magical Dimension | SPELL | 0 | 0 | 0
+Book of Moon | SPELL | 0 | 0 | 0
+
+Mirror Force | TRAP | 0 | 0 | 0
+Magic Cylinder | TRAP | 0 | 0 | 0
+Negate Attack | TRAP | 0 | 0 | 0
+Sakuretsu Armor | TRAP | 0 | 0 | 0
+Call of the Haunted | TRAP | 0 | 0 | 0
+
+Yami | FIELD | 0 | 0 | 0
