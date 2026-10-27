@@ -101,3 +101,7 @@ void Deck::shuffleDeck() {
     auto rng = std::default_random_engine{std::random_device{}()};
     std::shuffle(deck.begin(), deck.end(), rng);
 }
+
+int Deck::getDeckSize() const {
+    return deck.size();
+}

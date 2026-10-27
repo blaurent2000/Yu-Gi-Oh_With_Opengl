@@ -15,6 +15,7 @@ public:
     void drawCard(Hand& hand);
     void addCard(const Card& card);
     void shuffleDeck();
+    int getDeckSize() const;
 
 private:
     std::vector<Card> deck;

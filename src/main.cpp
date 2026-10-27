@@ -9,6 +9,7 @@
 #include "TextRenderer.hpp"
 #include "GameManager.hpp"
 #include "Deck.hpp"
+#include "DeckRenderer.hpp"
 
 #include <glad/gl.h>
 #include <GLFW/glfw3.h>
@@ -247,28 +248,28 @@ int main() {
             FontType::SmallCaps, "fonts/Matrix Regular Small Caps.ttf", 48
         );
 
-        CardRenderer renderer(
+        CardRenderer cardRenderer(
             shaderProgram, VAO, baseTexture, backTexture, starTexture,
             textureLibrary, &textRenderer
         );
 
-        FieldRenderer fieldRenderer(fieldShaderProgram, VAO, field, renderer);
+        FieldRenderer fieldRenderer(fieldShaderProgram, VAO, field, cardRenderer);
 
         GameManager gameManager;
         PhaseRenderer phaseRenderer(
             shaderProgram, VAO, phasesTextures, textureLibrary, gameManager
         );
-
+        
         glm::vec2 phasePosition(515.0f, 355.0f);
         glm::vec2 phaseSize(70.0f, 70.0f);
-
+        
         static bool wasMousePressed = false;
-
+        
         Deck deckP1;
         deckP1.initDeck("./deck/Blue-Eyes Deck.txt");
         Deck deckP2;
         deckP2.initDeck("./deck/Dark Magician Deck.txt");
-
+        
         int dr = 5;
         while (dr--) {
             deckP1.drawCard(hand1);
@@ -277,6 +278,9 @@ int main() {
         while (dr--) {
             deckP2.drawCard(hand2);
         }
+        
+        DeckRenderer deckRenderer(cardRenderer, deckP1, deckP2);
+
         while (!glfwWindowShouldClose(window)) {
             glfwPollEvents();
 
@@ -315,6 +319,7 @@ int main() {
 
             fieldRenderer.draw(projection, width, height);
             phaseRenderer.drawPhases(projection, phasePosition, phaseSize);
+            deckRenderer.drawDecks(projection, width, height);
 
             glm::vec2 handCardSize(100.0f, 150.0f);
             float overlap = 35.0f;
@@ -337,26 +342,17 @@ int main() {
 
             for (int i = 0; i < hand1.size(); i++) {
                 glm::vec2 position(startX + i * overlap, handY);
-                renderer.draw(*hand1.getCard(i), projection, position, handCardSize);
+                cardRenderer.draw(*hand1.getCard(i), projection, position, handCardSize);
             }
 
             if (hoveredCard != -1) {
-                renderer.draw(
+                cardRenderer.draw(
                     *hand1.getCard(hoveredCard),
                     projection,
                     glm::vec2(30.0f, height / 2.0f - 225.0f),
                     glm::vec2(300.0f, 450.0f)
                 );
             }
-
-            textRenderer.drawText(
-                FontType::SmallCaps,
-                "Blue-Eyes White Dragon",
-                50.0f, 100.0f,
-                0.5f,
-                glm::vec3(1.0f, 1.0f, 1.0f),
-                projection
-            );
 
             glfwSwapBuffers(window);
         }

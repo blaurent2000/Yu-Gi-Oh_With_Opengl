@@ -21,9 +21,18 @@ public:
         TextRenderer* textRenderer
     );
 
-    void draw(const Card& card, const glm::mat4& projection,
-          const glm::vec2& position,
-          const glm::vec2& size = glm::vec2(100.0f, 150.0f));
+    void draw(
+            const Card& card,
+            const glm::mat4& projection,
+            const glm::vec2& position,
+            const glm::vec2& size = glm::vec2(100.0f, 150.0f)
+        );
+
+    void drawBack(
+        const glm::mat4& projection,
+        const glm::vec2& position,
+        const glm::vec2& size = glm::vec2(100.0f, 150.0f)
+    );
 
 private:
     void drawTexture(

@@ -123,14 +123,16 @@ void CardRenderer::draw(
             size * glm::vec2(130.0f / 2000.0f, 130.0f / 3000.0f)
         );
     }
+    
+    std::string cardName = card.getName();
 
     // Affiche le nom au-dessus des étoiles
     textRenderer->drawText(
         FontType::SmallCaps,
-        card.getName(),
+        cardName,
         position.x + size.x * 0.09f,
         position.y + size.y * 0.065f,
-        size.x / 450.0f,
+        size.x / (450.0f + (5.0f * cardName.size())),
         glm::vec3(0.0f, 0.0f, 0.0f),
         projection
     );
@@ -165,4 +167,20 @@ void CardRenderer::draw(
         glm::vec3(0.0f, 0.0f, 0.0f),
         projection
     );
+}
+
+void CardRenderer::drawBack(
+    const glm::mat4& projection,
+    const glm::vec2& position,
+    const glm::vec2& size
+)
+{
+    drawTexture(
+        backTexture,
+        projection,
+        position,
+        size
+    );
+
+    return;
 }
