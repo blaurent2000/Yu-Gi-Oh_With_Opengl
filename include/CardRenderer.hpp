@@ -14,7 +14,9 @@ public:
     CardRenderer(
         unsigned int shaderProgram,
         unsigned int VAO,
-        unsigned int baseTexture,
+        unsigned int monsterFrame,
+        unsigned int spellFrame,
+        unsigned int trapFrame,
         unsigned int backTexture,
         unsigned int starTexture,
         TextureLibrary& textureLibrary,
@@ -45,7 +47,9 @@ private:
     unsigned int shaderProgram;
     unsigned int VAO;
 
-    unsigned int baseTexture;
+    unsigned int monsterFrame;
+    unsigned int spellFrame;
+    unsigned int trapFrame;
     unsigned int backTexture;
     unsigned int starTexture;
 

@@ -218,9 +218,12 @@ int main() {
         Hand hand1;
         Hand hand2;
 
-        baseTexture = loadTexture("textures/full_card.jpg");
+        // baseTexture = loadTexture("textures/full_card.jpg");
         backTexture = loadTexture("textures/card_back.jpg");
         starTexture = loadTexture("textures/star.png");
+        unsigned int monsterFrame = loadTexture("textures/frames/Monster.png");
+        unsigned int spellFrame   = loadTexture("textures/frames/Spell.png");
+        unsigned int trapFrame    = loadTexture("textures/frames/Trap.png");
 
         phasesTextures.push_back(loadTexture("textures/phases/d.png"));
         phasesTextures.push_back(loadTexture("textures/phases/sb.png"));
@@ -237,8 +240,26 @@ int main() {
         phasesTextures.push_back(loadTexture("textures/phases/end_current.png"));
 
         TextureLibrary textureLibrary;
-        textureLibrary.load("Blue-Eyes White Dragon");
         textureLibrary.load("Dark Magician");
+        textureLibrary.load("Dark Magician Girl");
+
+
+        textureLibrary.load("Blue-Eyes White Dragon");
+        textureLibrary.load("Alexandrite Dragon");
+        textureLibrary.load("Luster Dragon");
+        textureLibrary.load("Kaibaman");
+        textureLibrary.load("The White Stone Of Legend");
+        textureLibrary.load("Kaiser Sea Horse");
+
+        textureLibrary.load("Mountain");
+        textureLibrary.load("Polymerization");
+        textureLibrary.load("The Flute Of Summoning Dragon");
+        // textureLibrary.load("");
+
+        textureLibrary.load("Mirror Force");
+        textureLibrary.load("Torrential Tribute");
+        textureLibrary.load("Negate Attack");
+        // textureLibrary.load("");
 
         TextRenderer textRenderer("shaders/text.vert", "shaders/text.frag");
         textRenderer.loadFont(
@@ -249,7 +270,7 @@ int main() {
         );
 
         CardRenderer cardRenderer(
-            shaderProgram, VAO, baseTexture, backTexture, starTexture,
+            shaderProgram, VAO, monsterFrame, spellFrame, trapFrame, backTexture, starTexture,
             textureLibrary, &textRenderer
         );
 

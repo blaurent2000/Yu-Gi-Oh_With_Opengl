@@ -59,12 +59,21 @@ unsigned int TextureLibrary::load(const std::string& cardName)
     return texture;
 }
 
-unsigned int TextureLibrary::get(const std::string& cardName) const
+unsigned int TextureLibrary::get(const std::string& name)
 {
-    auto it = textures.find(cardName);
+    auto it = textures.find(name);
 
-    if (it == textures.end())
+    if (it == textures.end()) {
+        std::cerr << "[ERREUR TEXTURE] Carte introuvable dans la bibliothèque : "
+                  << name << std::endl;
         return 0;
+    }
+
+    if (it->second == 0) {
+        std::cerr << "[ERREUR TEXTURE] Texture OpenGL invalide pour : "
+                  << name << std::endl;
+        return 0;
+    }
 
     return it->second;
 }

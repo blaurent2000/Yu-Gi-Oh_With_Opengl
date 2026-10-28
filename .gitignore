@@ -2,7 +2,6 @@
 # Fichiers générés par CMake
 build/
 cmake-build-*/
-textures/cards/*
 
 # Fichiers compilés
 *.o

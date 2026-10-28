@@ -7,19 +7,19 @@ Luster Dragon | MONSTER | 1900 | 1600 | 4
 Luster Dragon | MONSTER | 1900 | 1600 | 4
 Kaiser Sea Horse | MONSTER | 1700 | 1650 | 4
 Kaibaman | MONSTER | 200 | 700 | 2
-The White Stone of Legend | MONSTER | 300 | 250 | 1
-The White Stone of Legend | MONSTER | 300 | 250 | 1
+The White Stone Of Legend | MONSTER | 300 | 250 | 1
+The White Stone Of Legend | MONSTER | 300 | 250 | 1
 
 Polymerization | SPELL | 0 | 0 | 0
 Polymerization | SPELL | 0 | 0 | 0
-Mausoleum of White | SPELL | 0 | 0 | 0
+Mausoleum Of White | SPELL | 0 | 0 | 0
 Silver's Cry | SPELL | 0 | 0 | 0
-The Flute of Summoning Dragon | SPELL | 0 | 0 | 0
+The Flute Of Summoning Dragon | SPELL | 0 | 0 | 0
 
 Torrential Tribute | TRAP | 0 | 0 | 0
 Mirror Force | TRAP | 0 | 0 | 0
 Negate Attack | TRAP | 0 | 0 | 0
-Call of the Haunted | TRAP | 0 | 0 | 0
+Call Of The Haunted | TRAP | 0 | 0 | 0
 Sakuretsu Armor | TRAP | 0 | 0 | 0
 
 Mountain | FIELD | 0 | 0 | 0

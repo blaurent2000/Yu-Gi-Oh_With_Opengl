@@ -7,7 +7,7 @@ class TextureLibrary
 {
 public:
     unsigned int load(const std::string& cardName);
-    unsigned int get(const std::string& cardName) const;
+    unsigned int get(const std::string& cardName);
 
 private:
     std::unordered_map<std::string, unsigned int> textures;

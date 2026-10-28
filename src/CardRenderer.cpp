@@ -6,7 +6,9 @@
 CardRenderer::CardRenderer(
     unsigned int shaderProgram,
     unsigned int VAO,
-    unsigned int baseTexture,
+    unsigned int monsterFrame,
+    unsigned int spellFrame,
+    unsigned int trapFrame,
     unsigned int backTexture,
     unsigned int starTexture,
     TextureLibrary& textureLibrary,
@@ -14,7 +16,9 @@ CardRenderer::CardRenderer(
 )
     : shaderProgram(shaderProgram),
       VAO(VAO),
-      baseTexture(baseTexture),
+      monsterFrame(monsterFrame),
+      spellFrame(spellFrame),
+      trapFrame(trapFrame),
       backTexture(backTexture),
       starTexture(starTexture),
       textureLibrary(textureLibrary),
@@ -91,13 +95,7 @@ void CardRenderer::draw(
         return;
     }
 
-    // 1. Dessine la carte de base
-    drawTexture(
-        baseTexture,
-        projection,
-        position,
-        size
-    );
+    
 
     // 2. Récupère l'image du monstre
     unsigned int monsterTexture =
@@ -113,6 +111,32 @@ void CardRenderer::draw(
         );
     }
 
+    // 1. Dessine la carte de base
+    unsigned int frameTexture = monsterFrame;
+
+switch (card.getType()) {
+    case MONSTER:
+        frameTexture = monsterFrame;
+        break;
+
+    case SPELL:
+        frameTexture = spellFrame;
+        break;
+
+    case TRAP:
+        frameTexture = trapFrame;
+        break;
+
+    case FIELD:
+        frameTexture = spellFrame;
+        break;
+}
+    drawTexture(
+        frameTexture,
+        projection,
+        position,
+        size
+    );
 
     int lvlMax = card.getLvl();
     for (int lvl = 0; lvl < lvlMax; lvl++) {
@@ -147,26 +171,28 @@ void CardRenderer::draw(
         glm::vec3(0.0f, 0.0f, 0.0f),
         projection
     );
+    if (card.getType() == MONSTER) {
 
-    textRenderer->drawText(
-        FontType::SmallCaps,
-        std::to_string(card.getAttack()),
-        position.x + size.x * 0.62f,
-        position.y + size.y * 0.915f,
-        size.x / 800.0f,
-        glm::vec3(0.0f, 0.0f, 0.0f),
-        projection
-    );
-
-    textRenderer->drawText(
-        FontType::SmallCaps,
-        std::to_string(card.getDefense()),
-        position.x + size.x * 0.82f,
-        position.y + size.y * 0.915f,
-        size.x / 800.0f,
-        glm::vec3(0.0f, 0.0f, 0.0f),
-        projection
-    );
+        textRenderer->drawText(
+            FontType::SmallCaps,
+            std::to_string(card.getAttack()),
+            position.x + size.x * 0.62f,
+            position.y + size.y * 0.915f,
+            size.x / 800.0f,
+            glm::vec3(0.0f, 0.0f, 0.0f),
+            projection
+        );
+        
+        textRenderer->drawText(
+            FontType::SmallCaps,
+            std::to_string(card.getDefense()),
+            position.x + size.x * 0.82f,
+            position.y + size.y * 0.915f,
+            size.x / 800.0f,
+            glm::vec3(0.0f, 0.0f, 0.0f),
+            projection
+        );
+    }
 }
 
 void CardRenderer::drawBack(
