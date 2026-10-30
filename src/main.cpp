@@ -254,12 +254,13 @@ int main() {
         textureLibrary.load("Mountain");
         textureLibrary.load("Polymerization");
         textureLibrary.load("The Flute Of Summoning Dragon");
-        // textureLibrary.load("");
+        textureLibrary.load("Mausoleum Of White");
 
         textureLibrary.load("Mirror Force");
         textureLibrary.load("Torrential Tribute");
         textureLibrary.load("Negate Attack");
-        // textureLibrary.load("");
+        textureLibrary.load("Sakuretsu Armor");
+        textureLibrary.load("Call Of The Haunted");
 
         TextRenderer textRenderer("shaders/text.vert", "shaders/text.frag");
         textRenderer.loadFont(
